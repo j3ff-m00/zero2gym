@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZERO TO GYM-READY — The Ultimate Beginner Starter Guide</title>
+<meta name="description" content="Go from confused gym beginner to confident, informed, and ready to train." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#080808;
+    --charcoal:#111111;
+    --charcoal-2:#1a1a1a;
+    --yellow:#FFD400;
+    --yellow-dark:#e6bf00;
+    --white:#ffffff;
+    --cream:#F1EDE4;
+    --beige:#D8C9B6;
+    --tan:#B08C70;
+    --brown:#76583F;
+    --olive:#667052;
+    --olive-light:#8a9474;
+    --sage:#A6AD94;
+    --text:#1a1a1a;
+    --radius:14px;
+    --radius-sm:10px;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+    --shadow-sm:0 8px 24px rgba(0,0,0,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',system-ui,-apple-system,sans-serif;
+    background:var(--black);
+    color:var(--white);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+  /* SCROLL PROGRESS */
+  .scroll-progress{
+    position:fixed;top:0;left:0;height:3px;
+    background:var(--yellow);
+    z-index:200;
+    width:0%;
+    transition:width .1s linear;
+  }
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    background:rgba(8,8,8,.7);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.04);
+    transition:all .3s ease;
+  }
+  .nav.scrolled{padding:14px 32px;background:rgba(8,8,8,.95);border-bottom-color:rgba(255,255,255,.08)}
+  .nav-logo{
+    font-weight:800;font-size:14px;letter-spacing:1.5px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .nav-logo .dot{width:8px;height:8px;background:var(--yellow);border-radius:50%}
+  .nav-logo span{color:var(--yellow)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{
+    font-size:13px;font-weight:500;color:rgba(255,255,255,.75);
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--yellow)}
+  .nav-cta{
+    background:var(--yellow);color:var(--black);
+    padding:10px 20px;border-radius:8px;
+    font-size:12px;font-weight:700;letter-spacing:.5px;
+    transition:transform .2s,background .2s;
+  }
+  .nav-cta:hover{background:var(--yellow-dark);transform:translateY(-1px)}
+  .hamburger{
+    display:none;color:var(--white);
+    font-size:22px;padding:4px;
+    width:36px;height:36px;
+    align-items:center;justify-content:center;
+  }
+  .hamburger svg{width:22px;height:22px}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    padding:140px 32px 80px;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(255,212,0,.08), transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(255,212,0,.04), transparent 50%),
+      linear-gradient(180deg, #080808 0%, #0e0e0e 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at center, black 30%, transparent 70%);
+    -webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+  .hero-inner{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:1.1fr 1fr;gap:60px;
+    align-items:center;position:relative;z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;font-weight:600;letter-spacing:2px;
+    color:var(--yellow);
+    padding:8px 16px;
+    border:1px solid rgba(255,212,0,.3);
+    border-radius:100px;
+    background:rgba(255,212,0,.06);
+    margin-bottom:28px;
+  }
+  .eyebrow::before{
+    content:"";width:6px;height:6px;background:var(--yellow);border-radius:50%;
+  }
+  .hero h1{
+    font-size:clamp(36px,5vw,62px);
+    font-weight:800;line-height:1.05;
+    letter-spacing:-1.5px;
+    margin-bottom:24px;
+  }
+  .hero h1 .accent{color:var(--yellow)}
+  .hero-sub{
+    font-size:17px;color:rgba(255,255,255,.72);
+    max-width:520px;margin-bottom:36px;
+    line-height:1.65;
+  }
+  .cta-primary{
+    display:inline-flex;align-items:center;gap:12px;
+    background:var(--yellow);color:var(--black);
+    padding:18px 32px;border-radius:10px;
+    font-size:15px;font-weight:700;letter-spacing:.3px;
+    transition:transform .2s,background .2s,box-shadow .2s;
+    box-shadow:0 10px 30px rgba(255,212,0,.25);
+    border:none;
+    cursor:pointer;
+  }
+  .cta-primary:hover{
+    transform:translateY(-2px);
+    background:var(--yellow-dark);
+    box-shadow:0 14px 40px rgba(255,212,0,.35);
+  }
+  .cta-primary svg{flex-shrink:0}
+  .cta-micro{
+    display:block;margin-top:14px;
+    font-size:12px;color:rgba(255,255,255,.5);
+    letter-spacing:.5px;
+  }
+  .hero-note{
+    margin-top:18px;font-size:13px;color:rgba(255,255,255,.55);
+    max-width:420px;
+  }
+
+  /* HERO MOCKUP - 6 BOOKS WITH ACTUAL IMAGES */
+  .mockup-stage{
+    position:relative;
+    height:640px;
+    perspective:1800px;
+  }
+  .book{
+    position:absolute;
+    background:var(--black);
+    border-radius:6px;
+    box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.05);
+    overflow:hidden;
+    transform-style:preserve-3d;
+    transition:transform .6s ease;
+  }
+  .book img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .book-main{
+    width:340px;height:460px;
+    top:60px;left:50%;
+    transform:translateX(-50%) rotateY(-8deg);
+    z-index:4;
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .book-side{
+    width:180px;height:260px;
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .bs-1{top:20px;left:20px;transform:rotateY(12deg) rotateZ(-4deg);z-index:2}
+  .bs-2{top:80px;right:20px;transform:rotateY(-12deg) rotateZ(4deg);z-index:2}
+  .bs-3{bottom:20px;left:40px;transform:rotateY(8deg) rotateZ(-2deg);z-index:3}
+  .bs-4{bottom:60px;right:40px;transform:rotateY(-8deg) rotateZ(2deg);z-index:3}
+  .bs-5{bottom:-20px;left:50%;transform:translateX(-50%) rotateY(0deg);z-index:5;width:200px;height:280px}
+
+  /* TRUST STRIP */
+  .trust-strip{
+    background:var(--charcoal);
+    border-top:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    padding:28px 32px;
+  }
+  .trust-inner{
+    max-width:1280px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  }
+  .trust-item{
+    text-align:center;padding:10px;
+    border-right:1px solid rgba(255,255,255,.08);
+  }
+  .trust-item:last-child{border-right:none}
+  .trust-item .label{
+    font-size:11px;font-weight:700;letter-spacing:2px;color:var(--yellow);
+  }
+
+  /* SECTIONS */
+  section{padding:100px 32px;position:relative}
+  .container{max-width:1200px;margin:0 auto}
+  .section-label{
+    display:inline-block;
+    font-size:11px;font-weight:700;letter-spacing:2.5px;
+    color:var(--yellow);
+    margin-bottom:18px;
+    text-transform:uppercase;
+  }
+  .section-label.dark{color:var(--olive)}
+  h2{
+    font-size:clamp(28px,4vw,46px);
+    font-weight:800;line-height:1.1;
+    letter-spacing:-1px;
+    margin-bottom:20px;
+  }
+  h2 .accent{color:var(--yellow)}
+  h2 .accent-dark{color:var(--olive)}
+  .section-sub{
+    font-size:17px;color:rgba(255,255,255,.65);
+    max-width:640px;line-height:1.65;
+  }
+  .section-sub.dark{color:var(--brown)}
+
+  /* IDENTITY */
+  .identity{background:var(--cream);color:var(--text)}
+  .identity h2{color:var(--text)}
+  .identity .section-sub{color:var(--brown)}
+  .identity-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:16px;margin-top:48px;
+  }
+  .identity-card{
+    background:var(--white);
+    padding:24px;border-radius:var(--radius);
+    border:1px solid rgba(0,0,0,.06);
+    font-size:15px;color:var(--text);
+    font-weight:500;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .identity-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+  .identity-card::before{
+    content:"";display:block;width:24px;height:2px;
+    background:var(--yellow);margin-bottom:14px;
+  }
+  .identity-end{
+    margin-top:48px;text-align:center;
+    font-size:18px;font-weight:700;color:var(--text);
+    padding:28px;
+    border:2px solid var(--yellow);
+    border-radius:var(--radius);
+    background:var(--white);
+  }
+
+  /* PROBLEM */
+  .problem{background:var(--charcoal)}
+  .problem-text{
+    margin-top:40px;
+    font-size:17px;line-height:1.8;
+    color:rgba(255,255,255,.78);
+    max-width:720px;
+  }
+  .problem-text p{margin-bottom:18px}
+  .problem-highlight{
+    margin-top:36px;
+    padding:24px 28px;
+    background:linear-gradient(90deg, rgba(255,212,0,.12), rgba(255,212,0,.04));
+    border-left:3px solid var(--yellow);
+    border-radius:var(--radius-sm);
+    font-size:16px;font-weight:600;
+    color:var(--yellow);
+    line-height:1.5;
+    max-width:720px;
+  }
+
+  /* COST */
+  .cost{background:var(--black)}
+  .cost-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;margin-top:48px;
+  }
+  .cost-card{
+    background:var(--charcoal);
+    padding:32px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    transition:transform .25s,border-color .25s;
+  }
+  .cost-card:hover{transform:translateY(-4px);border-color:rgba(255,212,0,.3)}
+  .cost-card .num{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--yellow);margin-bottom:14px;
+  }
+  .cost-card h3{
+    font-size:18px;font-weight:700;margin-bottom:12px;color:var(--white);
+  }
+  .cost-card p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6}
+  .cost-end{
+    margin-top:48px;text-align:center;
+    font-size:16px;color:rgba(255,255,255,.65);
+    font-style:italic;
+  }
+
+  /* BELIEF */
+  .belief{background:var(--cream);color:var(--text)}
+  .belief h2{color:var(--text)}
+  .belief-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;
+  }
+  .belief-col{padding:36px;border-radius:var(--radius);}
+  .belief-col.old{background:var(--beige);border:1px solid rgba(0,0,0,.08);}
+  .belief-col.new{
+    background:var(--charcoal);color:var(--white);
+    border:2px solid var(--yellow);position:relative;
+  }
+  .belief-col.new::before{
+    content:"NEW WAY";
+    position:absolute;top:-12px;left:24px;
+    background:var(--yellow);color:var(--black);
+    padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:2px;
+    border-radius:4px;
+  }
+  .belief-col .col-label{
+    font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:18px;
+  }
+  .belief-col.old .col-label{color:var(--brown)}
+  .belief-col.new .col-label{color:var(--yellow);margin-top:8px}
+  .belief-col ul{list-style:none}
+  .belief-col li{
+    padding:10px 0;font-size:15px;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    display:flex;align-items:center;gap:10px;
+  }
+  .belief-col.new li{border-bottom-color:rgba(255,255,255,.1)}
+  .belief-col li:last-child{border-bottom:none}
+  .belief-col.new li::before{content:"✓";color:var(--yellow);font-weight:700}
+  .belief-close{
+    margin-top:48px;text-align:center;
+    font-size:18px;font-weight:700;color:var(--text);line-height:1.5;
+  }
+  .belief-close .hl{color:var(--olive);display:block;margin-top:8px}
+
+  /* OPPORTUNITY */
+  .opportunity{background:var(--black)}
+  .opp-copy{
+    margin-top:40px;max-width:720px;
+    font-size:17px;line-height:1.75;color:rgba(255,255,255,.78);
+  }
+  .opp-copy p{margin-bottom:18px}
+
+  /* FRAMEWORK */
+  .framework{background:var(--charcoal)}
+  .fw-steps{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
+    margin-top:60px;position:relative;
+  }
+  .fw-steps::before{
+    content:"";position:absolute;
+    top:36px;left:8%;right:8%;height:2px;
+    background:linear-gradient(90deg, var(--yellow), rgba(255,212,0,.2));
+    z-index:0;
+  }
+  .fw-step{
+    text-align:center;position:relative;z-index:1;
+    cursor:pointer;
+  }
+  .fw-step .num{
+    width:72px;height:72px;margin:0 auto 18px;
+    border-radius:50%;
+    background:var(--black);
+    border:2px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:800;color:var(--yellow);
+    box-shadow:0 0 0 6px rgba(255,212,0,.08);
+    transition:transform .3s,box-shadow .3s;
+  }
+  .fw-step:hover .num,.fw-step.active .num{
+    transform:scale(1.1);
+    box-shadow:0 0 0 10px rgba(255,212,0,.15);
+  }
+  .fw-step h3{
+    font-size:13px;font-weight:700;letter-spacing:1.5px;
+    color:var(--yellow);margin-bottom:10px;text-transform:uppercase;
+  }
+  .fw-step p{
+    font-size:13px;color:rgba(255,255,255,.65);line-height:1.55;
+  }
+
+  /* INSIDE */
+  .inside{background:var(--black)}
+  .modules{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;margin-top:48px;
+  }
+  .module{
+    background:var(--charcoal);
+    padding:28px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    transition:transform .25s,border-color .25s;
+    position:relative;overflow:hidden;
+    cursor:pointer;
+  }
+  .module:hover{transform:translateY(-3px);border-color:rgba(255,212,0,.3)}
+  .module .m-num{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--yellow);margin-bottom:10px;
+  }
+  .module h3{
+    font-size:16px;font-weight:700;margin-bottom:8px;color:var(--white);
+  }
+  .module p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.55}
+  .module::after{
+    content:"";position:absolute;top:0;right:0;
+    width:40px;height:40px;
+    background:linear-gradient(135deg, rgba(255,212,0,.1), transparent);
+  }
+
+  /* DIFF 1 */
+  .diff1{background:var(--charcoal)}
+  .diff1-copy{
+    margin:32px 0 40px;max-width:720px;
+    font-size:16px;line-height:1.7;color:rgba(255,255,255,.75);
+  }
+  .diff1-cols{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .diff1-col{
+    padding:32px 24px;
+    background:var(--black);
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    transition:transform .25s;
+  }
+  .diff1-col:hover{transform:translateY(-3px)}
+  .diff1-col .d-label{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--yellow);margin-bottom:14px;
+  }
+  .diff1-col h3{
+    font-size:18px;font-weight:700;margin-bottom:12px;color:var(--white);
+  }
+  .diff1-col p{font-size:14px;color:rgba(255,255,255,.65);line-height:1.6}
+  .diff1-close{
+    margin-top:40px;text-align:center;
+    font-size:16px;color:rgba(255,255,255,.65);font-style:italic;
+  }
+
+  /* BUNDLE */
+  .bundle{background:var(--black)}
+  .bundle-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;margin-top:48px;
+  }
+  .resource{
+    background:var(--charcoal);
+    padding:28px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    transition:transform .25s,border-color .25s;
+    display:flex;flex-direction:column;
+    cursor:pointer;
+  }
+  .resource:hover{transform:translateY(-4px);border-color:rgba(255,212,0,.3)}
+  .resource .r-icon{
+    width:48px;height:48px;border-radius:50%;
+    background:rgba(255,212,0,.1);
+    border:1.5px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;color:var(--yellow);
+  }
+  .resource .r-num{
+    font-size:10px;font-weight:700;letter-spacing:2px;
+    color:rgba(255,255,255,.4);margin-bottom:8px;
+  }
+  .resource h3{
+    font-size:16px;font-weight:700;margin-bottom:10px;color:var(--white);
+    line-height:1.3;
+  }
+  .resource p{
+    font-size:13px;color:rgba(255,255,255,.6);line-height:1.55;flex-grow:1;
+  }
+  .resource .r-outcome{
+    margin-top:18px;padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:10px;font-weight:700;letter-spacing:2px;color:var(--yellow);
+  }
+
+  /* OUTCOMES */
+  .outcomes{background:var(--charcoal);padding:60px 32px;}
+  .outcomes-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(6,1fr);gap:20px;
+  }
+  .outcome{text-align:center;cursor:pointer}
+  .outcome .o-icon{
+    width:64px;height:64px;margin:0 auto 14px;
+    border-radius:50%;
+    background:rgba(255,212,0,.08);
+    border:2px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--yellow);
+    transition:transform .3s,background .3s;
+  }
+  .outcome:hover .o-icon{transform:scale(1.1);background:rgba(255,212,0,.15)}
+  .outcome .o-label{
+    font-size:11px;font-weight:700;letter-spacing:1px;
+    color:var(--white);line-height:1.4;
+  }
+
+  /* DIFF 2 */
+  .diff2{background:var(--black)}
+  .diff2-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;
+  }
+  .diff2-card{
+    background:var(--charcoal);
+    padding:32px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    transition:transform .25s;
+  }
+  .diff2-card:hover{transform:translateY(-3px)}
+  .diff2-card .d-label{
+    font-size:10px;font-weight:700;letter-spacing:2px;
+    color:rgba(255,255,255,.4);margin-bottom:12px;
+  }
+  .diff2-card .d-label.y{color:var(--yellow)}
+  .diff2-card h3{
+    font-size:15px;font-weight:600;margin-bottom:10px;color:var(--white);line-height:1.4;
+  }
+  .diff2-card p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.55}
+
+  /* TRACKER */
+  .tracker{background:var(--cream);color:var(--text);padding:100px 32px;}
+  .tracker h2{color:var(--text)}
+  .tracker .section-sub{color:var(--brown)}
+  .tracker-inner{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;
+    margin-top:48px;align-items:center;
+  }
+  .tracker-mock{
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,.06);
+  }
+  .tracker-mock .tm-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,.08);
+    margin-bottom:16px;
+  }
+  .tracker-mock .tm-head h4{font-size:14px;font-weight:700;color:var(--olive)}
+  .tracker-mock .tm-head .dots{display:flex;gap:4px}
+  .tracker-mock .tm-head .dots span{width:10px;height:10px;border-radius:50%;background:var(--beige)}
+  .tracker-mock .tm-tabs{
+    display:flex;gap:8px;margin-bottom:16px;
+  }
+  .tracker-mock .tm-tabs button{
+    padding:6px 14px;font-size:11px;font-weight:600;
+    border-radius:6px;background:var(--cream);color:var(--brown);
+    transition:all .2s;
+  }
+  .tracker-mock .tm-tabs button.active{background:var(--olive);color:var(--white)}
+  .tracker-mock table{width:100%;border-collapse:collapse;font-size:12px}
+  .tracker-mock th{
+    text-align:left;padding:8px 10px;
+    font-size:10px;font-weight:700;letter-spacing:1px;
+    color:var(--olive);border-bottom:1px solid var(--beige);
+  }
+  .tracker-mock td{
+    padding:10px;border-bottom:1px solid rgba(0,0,0,.05);color:var(--text);
+  }
+  .tracker-copy h3{
+    font-size:22px;font-weight:700;margin-bottom:16px;color:var(--text);
+  }
+  .tracker-copy p{
+    font-size:15px;color:var(--brown);line-height:1.7;margin-bottom:16px;
+  }
+  .tracker-dbs{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;
+  }
+  .tracker-db{
+    background:var(--white);padding:16px;border-radius:var(--radius-sm);
+    border:1px solid rgba(0,0,0,.08);
+  }
+  .tracker-db .db-label{
+    font-size:10px;font-weight:700;letter-spacing:1.5px;
+    color:var(--olive);margin-bottom:8px;
+  }
+  .tracker-db .db-fields{
+    font-size:11px;color:var(--brown);line-height:1.6;
+  }
+  .cta-dark{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--olive);color:var(--white);
+    padding:14px 24px;border-radius:8px;
+    font-size:13px;font-weight:700;letter-spacing:.3px;
+    transition:transform .2s,background .2s;
+  }
+  .cta-dark:hover{background:var(--brown);transform:translateY(-2px)}
+
+  /* WHO */
+  .who{background:var(--charcoal)}
+  .who-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;margin-top:48px;
+  }
+  .who-card{
+    background:var(--black);
+    padding:22px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    display:flex;align-items:flex-start;gap:14px;
+    font-size:14px;color:rgba(255,255,255,.8);
+    transition:transform .25s,border-color .25s;
+  }
+  .who-card:hover{transform:translateX(4px);border-color:rgba(255,212,0,.3)}
+  .who-card .check{
+    flex-shrink:0;width:22px;height:22px;border-radius:50%;
+    background:var(--yellow);color:var(--black);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:700;
+  }
+
+  /* WHO NOT */
+  .who-not{background:var(--black)}
+  .who-not-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;margin-top:48px;
+  }
+  .who-not-card{
+    background:var(--charcoal);
+    padding:22px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    display:flex;align-items:flex-start;gap:14px;
+    font-size:14px;color:rgba(255,255,255,.7);
+  }
+  .who-not-card .x{
+    flex-shrink:0;width:22px;height:22px;border-radius:50%;
+    background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:700;
+  }
+  .who-not-end{
+    margin-top:32px;padding:20px 24px;
+    background:rgba(255,212,0,.06);
+    border-left:3px solid var(--yellow);
+    border-radius:var(--radius-sm);
+    font-size:14px;color:rgba(255,255,255,.7);
+    max-width:720px;
+  }
+
+  /* FAQ */
+  .faq{background:var(--cream);color:var(--text)}
+  .faq h2{color:var(--text)}
+  .faq-list{margin-top:48px;max-width:820px}
+  .faq-item{
+    background:var(--white);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    border:1px solid rgba(0,0,0,.06);
+    overflow:hidden;
+    transition:box-shadow .25s;
+  }
+  .faq-item:hover{box-shadow:var(--shadow-sm)}
+  .faq-q{
+    width:100%;text-align:left;
+    padding:22px 24px;
+    font-size:15px;font-weight:600;color:var(--text);
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .faq-q .plus{
+    flex-shrink:0;width:24px;height:24px;border-radius:50%;
+    background:var(--cream);color:var(--olive);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:700;
+    transition:transform .3s,background .3s;
+  }
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);background:var(--yellow);color:var(--black)}
+  .faq-a{
+    max-height:0;overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .faq-a-inner{
+    padding:0 24px 22px;
+    font-size:14px;color:var(--brown);line-height:1.65;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer{background:var(--charcoal);padding:40px 32px;text-align:center;}
+  .disclaimer-inner{
+    max-width:820px;margin:0 auto;
+    font-size:12px;color:rgba(255,255,255,.45);line-height:1.7;
+  }
+  .disclaimer-inner strong{color:rgba(255,255,255,.6)}
+
+  /* TESTIMONIALS - 7 Filipino names, mixed gender */
+  .testimonials{background:var(--black)}
+  .testimonials-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;margin-top:48px;
+  }
+  .testimonial{
+    background:var(--charcoal);
+    padding:28px 24px;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.06);
+    position:relative;
+    transition:transform .25s;
+  }
+  .testimonial:hover{transform:translateY(-3px)}
+  .testimonial .t-quote{
+    font-size:14px;color:rgba(255,255,255,.75);
+    line-height:1.65;margin-bottom:20px;
+    font-style:italic;
+  }
+  .testimonial .t-author{
+    display:flex;align-items:center;gap:12px;
+    margin-top:16px;
+  }
+  .testimonial .t-avatar{
+    width:44px;height:44px;border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--yellow);
+  }
+  .testimonial .t-name{font-size:13px;font-weight:700;color:var(--yellow)}
+  .testimonial .t-context{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+
+  /* VALUE */
+  .value{background:var(--black)}
+  .value-list{margin-top:48px;max-width:720px}
+  .value-item{
+    display:flex;align-items:center;gap:20px;
+    padding:22px 24px;
+    background:var(--charcoal);
+    border-radius:var(--radius);
+    margin-bottom:12px;
+    border:1px solid rgba(255,255,255,.06);
+    transition:border-color .25s,transform .25s;
+  }
+  .value-item:hover{border-color:rgba(255,212,0,.3);transform:translateX(4px)}
+  .value-item .v-icon{
+    flex-shrink:0;width:44px;height:44px;border-radius:10px;
+    background:rgba(255,212,0,.1);
+    border:1.5px solid var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--yellow);
+  }
+  .value-item.main{
+    background:linear-gradient(135deg, rgba(255,212,0,.08), rgba(255,212,0,.02));
+    border-color:rgba(255,212,0,.3);
+  }
+  .value-item .v-text h4{
+    font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px;
+  }
+  .value-item .v-text p{font-size:12px;color:rgba(255,255,255,.55)}
+  .value-item .v-tag{
+    margin-left:auto;
+    font-size:10px;font-weight:700;letter-spacing:1.5px;
+    color:var(--yellow);
+    padding:4px 10px;border:1px solid rgba(255,212,0,.3);
+    border-radius:100px;
+  }
+
+  /* PRICE */
+  .price{background:var(--charcoal)}
+  .price-card{
+    max-width:560px;margin:48px auto 0;
+    background:var(--black);
+    padding:48px 40px;
+    border-radius:var(--radius);
+    border:2px solid var(--yellow);
+    text-align:center;
+    position:relative;
+  }
+  .price-card::before{
+    content:"INTRODUCTORY";
+    position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+    background:var(--yellow);color:var(--black);
+    padding:4px 16px;font-size:10px;font-weight:700;letter-spacing:2px;
+    border-radius:4px;
+  }
+  .price-anchor{
+    font-size:14px;color:rgba(255,255,255,.45);
+    text-decoration:line-through;margin-bottom:8px;
+  }
+  .price-amount{
+    font-size:64px;font-weight:900;color:var(--yellow);
+    line-height:1;margin-bottom:8px;letter-spacing:-2px;
+  }
+  .price-label{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:rgba(255,255,255,.6);margin-bottom:24px;
+  }
+  .price-copy{
+    font-size:14px;color:rgba(255,255,255,.65);
+    line-height:1.6;margin-bottom:28px;
+  }
+  .price-micro{margin-top:14px;font-size:12px;color:rgba(255,255,255,.45)}
+
+  /* RISK */
+  .risk{background:var(--black)}
+  .risk-inner{max-width:720px;margin:0 auto;text-align:center}
+  .risk p{font-size:16px;color:rgba(255,255,255,.7);line-height:1.7}
+
+  /* FINAL */
+  .final{
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(255,212,0,.08), transparent 60%),
+      linear-gradient(180deg, #080808 0%, #0e0e0e 100%);
+    padding:120px 32px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .final::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at center, black 20%, transparent 70%);
+    -webkit-mask-image:radial-gradient(ellipse at center, black 20%, transparent 70%);
+  }
+  .final-inner{position:relative;z-index:2;max-width:820px;margin:0 auto}
+  .final h2{color:var(--white);margin-bottom:16px}
+  .final .hl-line{
+    font-size:clamp(24px,3.5vw,38px);
+    font-weight:800;color:var(--yellow);
+    margin-bottom:32px;line-height:1.2;letter-spacing:-.5px;
+  }
+  .final p{
+    font-size:16px;color:rgba(255,255,255,.7);
+    line-height:1.7;margin-bottom:16px;
+  }
+  .final-list{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:10px 20px;
+    margin:32px 0 40px;
+  }
+  .final-list span{
+    font-size:13px;font-weight:600;color:var(--white);
+    padding:8px 16px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:100px;
+    transition:all .2s;
+  }
+  .final-list span:hover{background:rgba(255,212,0,.1);border-color:var(--yellow);color:var(--yellow)}
+  .final-sub{margin-top:18px;font-size:13px;color:rgba(255,255,255,.5)}
+
+  /* FINAL CTA */
+  .final-cta{background:var(--cream);color:var(--text);padding:80px 32px;text-align:center}
+  .final-cta h2{color:var(--text)}
+  .final-cta .section-sub{color:var(--brown);margin:0 auto 32px}
+
+  /* FOOTER */
+  footer{
+    background:var(--black);
+    padding:60px 32px 30px;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .footer-inner{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px;
+  }
+  .footer-brand .f-logo{
+    font-weight:800;font-size:14px;letter-spacing:1.5px;
+    margin-bottom:14px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .footer-brand .f-logo .dot{width:8px;height:8px;background:var(--yellow);border-radius:50%}
+  .footer-brand .f-logo span{color:var(--yellow)}
+  .footer-brand p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6;max-width:320px}
+  .footer-col h5{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--yellow);margin-bottom:14px;
+  }
+  .footer-col a{
+    display:block;font-size:13px;color:rgba(255,255,255,.6);
+    margin-bottom:10px;transition:color .2s;
+  }
+  .footer-col a:hover{color:var(--yellow)}
+  .footer-bottom{
+    max-width:1200px;margin:0 auto;
+    padding-top:24px;border-top:1px solid rgba(255,255,255,.06);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;color:rgba(255,255,255,.4);
+    flex-wrap:wrap;gap:12px;
+  }
+
+  /* MOBILE STICKY CTA */
+  .mobile-cta{
+    display:none;
+    position:fixed;bottom:0;left:0;right:0;z-index:99;
+    background:rgba(8,8,8,.95);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    padding:14px 20px;
+    border-top:1px solid rgba(255,212,0,.2);
+  }
+  .mobile-cta button{
+    width:100%;
+    background:var(--yellow);color:var(--black);
+    padding:16px;border-radius:10px;
+    font-size:14px;font-weight:700;letter-spacing:.3px;
+    transition:background .2s;
+  }
+  .mobile-cta button:hover{background:var(--yellow-dark)}
+
+  /* ===== PAYMENT MODAL ===== */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(8,8,8,.85);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    z-index:300;
+    display:none;
+    align-items:center;justify-content:center;
+    padding:20px;
+    opacity:0;
+    transition:opacity .3s ease;
+  }
+  .modal-overlay.active{display:flex;opacity:1}
+  .modal{
+    background:var(--cream);
+    color:var(--text);
+    border-radius:20px;
+    max-width:520px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    transform:translateY(20px);
+    transition:transform .3s ease;
+  }
+  .modal-overlay.active .modal{transform:translateY(0)}
+  .modal-close{
+    position:absolute;top:16px;right:16px;
+    width:36px;height:36px;border-radius:50%;
+    background:var(--charcoal);color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:700;
+    z-index:10;
+    transition:background .2s,transform .2s;
+  }
+  .modal-close:hover{background:var(--black);transform:rotate(90deg)}
+  .modal-header{
+    padding:40px 32px 24px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .modal-header .m-eyebrow{
+    font-size:10px;font-weight:700;letter-spacing:2.5px;
+    color:var(--olive);margin-bottom:12px;
+  }
+  .modal-header h3{
+    font-size:28px;font-weight:900;letter-spacing:-.5px;
+    color:var(--charcoal);margin-bottom:4px;
+  }
+  .modal-header .m-sub{
+    font-size:13px;color:var(--brown);margin-bottom:4px;
+  }
+  .modal-header .m-bundle{
+    font-size:12px;font-weight:600;color:var(--yellow);
+    background:var(--charcoal);
+    display:inline-block;
+    padding:4px 12px;border-radius:100px;
+    margin-top:10px;
+  }
+  .modal-price{
+    padding:28px 32px;
+    text-align:center;
+    background:linear-gradient(135deg, rgba(255,212,0,.15), rgba(255,212,0,.05));
+  }
+  .modal-price .mp-amount{
+    font-size:56px;font-weight:900;color:var(--charcoal);
+    letter-spacing:-2px;line-height:1;
+  }
+  .modal-price .mp-label{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--olive);margin-top:8px;
+  }
+  .modal-gcash{
+    padding:28px 32px;
+    background:linear-gradient(135deg, rgba(102,112,82,.08), rgba(102,112,82,.03));
+    border-top:1px solid rgba(102,112,82,.15);
+    border-bottom:1px solid rgba(102,112,82,.15);
+  }
+  .modal-gcash .mg-label{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--olive);margin-bottom:16px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .modal-gcash .mg-label::before{
+    content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--olive);
+  }
+  .modal-gcash .mg-brand{
+    font-size:20px;font-weight:800;color:#0070F3;
+    margin-bottom:16px;
+  }
+  .modal-gcash .mg-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .modal-gcash .mg-row:last-child{border-bottom:none}
+  .modal-gcash .mg-row .mg-k{
+    font-size:11px;font-weight:600;letter-spacing:1px;
+    color:var(--brown);
+  }
+  .modal-gcash .mg-row .mg-v{
+    font-size:15px;font-weight:700;color:var(--charcoal);
+  }
+  .modal-gcash .mg-number{
+    font-size:22px;font-weight:800;color:var(--charcoal);
+    letter-spacing:1px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .modal-gcash .mg-copy{
+    background:var(--charcoal);color:var(--white);
+    padding:6px 12px;border-radius:6px;
+    font-size:10px;font-weight:700;letter-spacing:1px;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  .modal-gcash .mg-copy:hover{background:var(--black)}
+  .modal-gcash .mg-copy.copied{background:var(--olive)}
+  .modal-instruction{
+    padding:20px 32px;
+    font-size:14px;color:var(--brown);
+    line-height:1.6;
+    border-bottom:1px solid rgba(0,0,0,.06);
+  }
+  .modal-instruction strong{color:var(--charcoal)}
+  .modal-proof{
+    margin:20px 32px;
+    padding:20px;
+    background:var(--white);
+    border-radius:12px;
+    border-left:4px solid var(--yellow);
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .modal-proof .mp-icon{
+    flex-shrink:0;width:36px;height:36px;border-radius:50%;
+    background:rgba(255,212,0,.15);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--yellow);
+  }
+  .modal-proof .mp-title{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--charcoal);margin-bottom:6px;
+  }
+  .modal-proof .mp-text{
+    font-size:13px;color:var(--brown);line-height:1.55;
+  }
+  .modal-proof .mp-text em{
+    color:var(--charcoal);font-weight:600;font-style:normal;
+    background:rgba(255,212,0,.2);
+    padding:1px 4px;border-radius:3px;
+  }
+  .modal-footer{
+    padding:24px 32px 32px;
+    text-align:center;
+  }
+  .modal-cta{
+    width:100%;
+    background:var(--charcoal);color:var(--white);
+    padding:18px;border-radius:10px;
+    font-size:14px;font-weight:700;letter-spacing:.5px;
+    transition:background .2s,transform .2s;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .modal-cta:hover{background:var(--black);transform:translateY(-2px)}
+  .modal-footer-note{
+    margin-top:12px;
+    font-size:12px;color:var(--brown);
+  }
+
+  /* REVEAL ANIMATIONS */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:.1s}
+  .reveal-delay-2{transition-delay:.2s}
+  .reveal-delay-3{transition-delay:.3s}
+
+  /* RESPONSIVE */
+  @media (max-width:980px){
+    .hero-inner{grid-template-columns:1fr;gap:40px}
+    .mockup-stage{height:500px}
+    .book-main{width:280px;height:380px}
+    .book-side{width:150px;height:220px}
+    .bs-1{top:10px;left:10px}
+    .bs-2{top:40px;right:10px}
+    .bs-3{bottom:10px;left:20px}
+    .bs-4{bottom:30px;right:20px}
+    .bs-5{bottom:-10px;left:50%}
+    .belief-grid{grid-template-columns:1fr}
+    .fw-steps{grid-template-columns:repeat(3,1fr)}
+    .fw-steps::before{display:none}
+    .diff1-cols{grid-template-columns:1fr}
+    .diff2-grid{grid-template-columns:1fr}
+    .tracker-inner{grid-template-columns:1fr;gap:40px}
+    .outcomes-inner{grid-template-columns:repeat(3,1fr)}
+    .footer-inner{grid-template-columns:1fr;gap:30px}
+    .modal-price .mp-amount{font-size:48px}
+  }
+  @media (max-width:640px){
+    section{padding:70px 20px}
+    .hero{padding:110px 20px 60px}
+    .nav{padding:14px 20px}
+    .nav-links{display:none}
+    .nav-links.open{
+      display:flex;flex-direction:column;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--black);
+      padding:20px;gap:16px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .hamburger{display:flex}
+    .trust-inner{grid-template-columns:repeat(2,1fr)}
+    .trust-item{border-right:none}
+    .fw-steps{grid-template-columns:repeat(2,1fr)}
+    .outcomes-inner{grid-template-columns:repeat(2,1fr)}
+    .price-card{padding:40px 24px}
+    .price-amount{font-size:52px}
+    .mobile-cta{display:block}
+    body{padding-bottom:80px}
+    .mockup-stage{height:460px}
+    .book-main{width:220px;height:300px;top:40px}
+    .book-side{width:110px;height:160px}
+    .bs-1{top:0;left:0}
+    .bs-2{top:20px;right:0}
+    .bs-3{bottom:0;left:10px}
+    .bs-4{bottom:20px;right:10px}
+    .bs-5{bottom:-20px;left:50%;width:140px;height:200px}
+    .final{padding:80px 20px}
+    .modal{margin:10px;border-radius:16px}
+    .modal-header{padding:32px 24px 20px}
+    .modal-header h3{font-size:24px}
+    .modal-price{padding:24px}
+    .modal-price .mp-amount{font-size:44px}
+    .modal-gcash{padding:24px}
+    .modal-gcash .mg-number{font-size:18px}
+    .modal-instruction{padding:16px 24px}
+    .modal-proof{margin:16px 24px}
+    .modal-footer{padding:20px 24px 28px}
+  }
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo"><span class="dot"></span>ZERO <span>TO</span> GYM-READY</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#inside">What's Inside</a>
+    <a href="#framework">How It Works</a>
+    <a href="#bundle">Resources</a>
+    <a href="#faq">FAQ</a>
+    <a href="#price" class="nav-cta open-modal">GET STARTED — ₱499</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <svg id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">THE BEGINNER'S COMPLETE GYM STARTER SYSTEM</div>
+      <h1>START YOUR FITNESS JOURNEY <span class="accent">WITHOUT FIGURING EVERYTHING OUT ALONE.</span></h1>
+      <p class="hero-sub">ZERO TO GYM-READY gives you the practical knowledge, beginner guidance, and simple tools you need to understand the gym, make smarter fitness decisions, and start training with more confidence.</p>
+      <button class="cta-primary open-modal">
+        GET ZERO TO GYM-READY — ₱499
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <span class="cta-micro">Instant Digital Access</span>
+      <p class="hero-note">For beginners and returning gym-goers who want a clearer starting point.</p>
+    </div>
+    <div class="mockup-stage" id="mockupStage">
+      <!-- 6 BOOKS WITH ACTUAL IMAGE FILES -->
+      <div class="book book-main" data-parallax="0.05">
+        <img src="images/zero-to-gym-ready.jpg" alt="ZERO TO GYM-READY - The Ultimate Beginner Starter Guide by Jeff Maclang">
+      </div>
+      <div class="book book-side bs-1" data-parallax="0.08">
+        <img src="images/gym-linggo.jpg" alt="Gym Linggo - The Beginner's Guide to Understanding Fitness Terms">
+      </div>
+      <div class="book book-side bs-2" data-parallax="0.1">
+        <img src="images/gym-shoe-guide.jpg" alt="The Beginner's Gym Shoe Guide">
+      </div>
+      <div class="book book-side bs-3" data-parallax="0.06">
+        <img src="images/gym-survival-guide.jpg" alt="The Beginner's Gym Survival Guide">
+      </div>
+      <div class="book book-side bs-4" data-parallax="0.12">
+        <img src="images/trainer-question-guide.jpg" alt="The Beginner's Trainer Question Guide">
+      </div>
+      <div class="book book-side bs-5" data-parallax="0.07">
+        <img src="images/fitness-tracker.jpg" alt="Beginner's Fitness Tracker">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="label">BEGINNER-FOCUSED</div></div>
+    <div class="trust-item"><div class="label">PRACTICAL GUIDANCE</div></div>
+    <div class="trust-item"><div class="label">DIGITAL ACCESS</div></div>
+    <div class="trust-item"><div class="label">NO COMPLEXITY</div></div>
+  </div>
+</div>
+
+<!-- IDENTITY -->
+<section class="identity">
+  <div class="container">
+    <div class="section-label dark reveal">IDENTITY</div>
+    <h2 class="reveal">IF YOU'VE EVER THOUGHT<span class="accent-dark">...</span></h2>
+    <div class="identity-grid">
+      <div class="identity-card reveal">"I want to start going to the gym, but I don't know what I'm supposed to do."</div>
+      <div class="identity-card reveal reveal-delay-1">"Do I actually need a trainer?"</div>
+      <div class="identity-card reveal reveal-delay-2">"What shoes should I wear?"</div>
+      <div class="identity-card reveal reveal-delay-3">"What exercises should I learn first?"</div>
+      <div class="identity-card reveal">"How much weight should I use?"</div>
+      <div class="identity-card reveal reveal-delay-1">"What should I eat?"</div>
+      <div class="identity-card reveal reveal-delay-2">"How do I know if I'm actually progressing?"</div>
+      <div class="identity-card reveal reveal-delay-3">"What does everyone at the gym even mean?"</div>
+    </div>
+    <div class="identity-end reveal">THEN YOU'RE EXACTLY WHO THIS WAS BUILT FOR.</div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="section-label reveal">THE REAL PROBLEM</div>
+    <h2 class="reveal">THE PROBLEM ISN'T ALWAYS <span class="accent">MOTIVATION.</span></h2>
+    <p class="section-sub reveal">Sometimes, you simply don't know where to start.</p>
+    <div class="problem-text">
+      <p class="reveal">You can want to get fit and still feel completely lost.</p>
+      <p class="reveal">You can afford a gym membership and still feel uncomfortable walking through the doors.</p>
+      <p class="reveal">You can watch dozens of fitness videos and still wonder which advice actually applies to you.</p>
+      <p class="reveal">You can buy workout clothes, shoes, supplements, and equipment and still not know whether any of them were actually necessary.</p>
+      <p class="reveal">The problem isn't that you don't care.</p>
+      <p class="reveal">The problem is that there is too much information and not enough clarity.</p>
+    </div>
+    <div class="problem-highlight reveal">
+      YOU DON'T NEED MORE INFORMATION.<br>YOU NEED THE RIGHT INFORMATION IN THE RIGHT ORDER.
+    </div>
+  </div>
+</section>
+
+<!-- COST -->
+<section class="cost">
+  <div class="container">
+    <div class="section-label reveal">THE HIDDEN COST</div>
+    <h2 class="reveal">WHEN EVERYTHING FEELS IMPORTANT, <span class="accent">IT'S EASY TO WASTE TIME AND MONEY.</span></h2>
+    <div class="cost-grid">
+      <div class="cost-card reveal"><div class="num">01</div><h3>WASTED TIME</h3><p>Constantly changing routines because you aren't sure what you're supposed to be doing.</p></div>
+      <div class="cost-card reveal reveal-delay-1"><div class="num">02</div><h3>UNNECESSARY SPENDING</h3><p>Buying equipment, shoes, products, or memberships without knowing what you actually need.</p></div>
+      <div class="cost-card reveal reveal-delay-2"><div class="num">03</div><h3>OVERWHELM</h3><p>Trying to learn workouts, nutrition, terminology, equipment, and gym etiquette all at once.</p></div>
+      <div class="cost-card reveal"><div class="num">04</div><h3>LACK OF CONFIDENCE</h3><p>Walking into the gym wondering whether you're doing something wrong.</p></div>
+      <div class="cost-card reveal reveal-delay-1"><div class="num">05</div><h3>DEPENDENCE</h3><p>Feeling like you always need someone else to tell you what to do.</p></div>
+    </div>
+    <p class="cost-end reveal">ZERO TO GYM-READY was created to simplify that first stage.</p>
+  </div>
+</section>
+
+<!-- BELIEF -->
+<section class="belief">
+  <div class="container">
+    <div class="section-label dark reveal">A CLEARER WAY</div>
+    <h2 class="reveal">YOU DON'T NEED TO BECOME AN EXPERT <span class="accent-dark">BEFORE YOU BEGIN.</span></h2>
+    <div class="belief-grid">
+      <div class="belief-col old reveal">
+        <div class="col-label">OLD WAY</div>
+        <ul>
+          <li>Watch more videos.</li>
+          <li>Save more workouts.</li>
+          <li>Buy more gear.</li>
+          <li>Try random routines.</li>
+          <li>Change everything constantly.</li>
+          <li>Hope you're doing it right.</li>
+        </ul>
+      </div>
+      <div class="belief-col new reveal reveal-delay-1">
+        <div class="col-label">NEW WAY</div>
+        <ul>
+          <li>Understand what matters first.</li>
+          <li>Learn the basics.</li>
+          <li>Start simply.</li>
+          <li>Track what you do.</li>
+          <li>Ask better questions.</li>
+          <li>Build independence over time.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="belief-close reveal">
+      THE GOAL ISN'T TO KNOW EVERYTHING.
+      <span class="hl">THE GOAL IS TO KNOW ENOUGH TO START INTELLIGENTLY.</span>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITY -->
+<section class="opportunity">
+  <div class="container">
+    <div class="section-label reveal">THE NEW OPPORTUNITY</div>
+    <h2 class="reveal">MEET <span class="accent">ZERO TO GYM-READY.</span></h2>
+    <p class="section-sub reveal">A beginner fitness orientation system designed to help you understand the gym before you try to master it.</p>
+    <div class="opp-copy">
+      <p class="reveal">Instead of throwing another complicated workout program at you, ZERO TO GYM-READY helps you understand the environment, decisions, terminology, training basics, nutrition fundamentals, progress tracking, and practical situations that beginners commonly struggle with.</p>
+      <p class="reveal">You don't have to figure out everything at once.</p>
+      <p class="reveal"><strong style="color:var(--yellow)">You simply follow the path.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="framework" id="framework">
+  <div class="container">
+    <div class="section-label reveal" style="text-align:center;display:block">THE PATH</div>
+    <h2 class="reveal" style="text-align:center">A CLEAR SIX-STEP <span class="accent">FRAMEWORK</span></h2>
+    <div class="fw-steps">
+      <div class="fw-step reveal" data-step="1"><div class="num">01</div><h3>PREPARE</h3><p>Know where to start and what you actually need.</p></div>
+      <div class="fw-step reveal reveal-delay-1" data-step="2"><div class="num">02</div><h3>UNDERSTAND</h3><p>Learn the basic language and concepts of fitness.</p></div>
+      <div class="fw-step reveal reveal-delay-2" data-step="3"><div class="num">03</div><h3>TRAIN</h3><p>Apply the basics with greater confidence.</p></div>
+      <div class="fw-step reveal" data-step="4"><div class="num">04</div><h3>TRACK</h3><p>Record useful information from your workouts.</p></div>
+      <div class="fw-step reveal reveal-delay-1" data-step="5"><div class="num">05</div><h3>PROGRESS</h3><p>Recognize meaningful improvements.</p></div>
+      <div class="fw-step reveal reveal-delay-2" data-step="6"><div class="num">06</div><h3>BECOME INDEPENDENT</h3><p>Use what you've learned to make better decisions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE -->
+<section class="inside" id="inside">
+  <div class="container">
+    <div class="section-label reveal">THE FOUNDATION</div>
+    <h2 class="reveal">START WITH THE <span class="accent">FOUNDATION.</span></h2>
+    <p class="section-sub reveal">The main guide — eight modules that take you from zero to gym-ready.</p>
+    <div class="modules">
+      <div class="module reveal"><div class="m-num">MODULE 01</div><h3>START HERE</h3><p>Where Do I Begin?</p></div>
+      <div class="module reveal reveal-delay-1"><div class="m-num">MODULE 02</div><h3>KNOW WHAT YOU NEED</h3><p>What Do I Actually Need To Spend Money On?</p></div>
+      <div class="module reveal reveal-delay-2"><div class="m-num">MODULE 03</div><h3>TRAIN WITH CONFIDENCE</h3><p>How Do I Know I'm Doing Things Correctly?</p></div>
+      <div class="module reveal"><div class="m-num">MODULE 04</div><h3>UNDERSTAND THE BASICS</h3><p>What Am I Actually Training?</p></div>
+      <div class="module reveal reveal-delay-1"><div class="m-num">MODULE 05</div><h3>YOUR FIRST WORKOUT</h3><p>What Do I Actually Do When I Walk Into The Gym?</p></div>
+      <div class="module reveal reveal-delay-2"><div class="m-num">MODULE 06</div><h3>EAT LIKE A BEGINNER</h3><p>What Should I Actually Eat?</p></div>
+      <div class="module reveal"><div class="m-num">MODULE 07</div><h3>KNOW IF YOU'RE PROGRESSING</h3><p>How Do I Know If This Is Working?</p></div>
+      <div class="module reveal reveal-delay-1"><div class="m-num">MODULE 08</div><h3>BECOME GYM-READY</h3><p>What Do I Do From Here?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFF 1 -->
+<section class="diff1">
+  <div class="container">
+    <div class="section-label reveal">DIFFERENT BY DESIGN</div>
+    <h2 class="reveal">THIS ISN'T ANOTHER <span class="accent">"DO THIS WORKOUT"</span> BOOK.</h2>
+    <p class="diff1-copy reveal">A workout program can tell you what to do. ZERO TO GYM-READY helps you understand why, how, when, and what to consider before you start making fitness decisions on your own.</p>
+    <div class="diff1-cols">
+      <div class="diff1-col reveal"><div class="d-label">LEARN</div><h3>Understand the basics</h3><p>Before trying to do everything at once.</p></div>
+      <div class="diff1-col reveal reveal-delay-1"><div class="d-label">DECIDE</div><h3>Know what you actually need</h3><p>And where professional guidance can help.</p></div>
+      <div class="diff1-col reveal reveal-delay-2"><div class="d-label">APPLY</div><h3>Use what you've learned</h3><p>In the real world, not just in theory.</p></div>
+    </div>
+    <p class="diff1-close reveal">The goal isn't permanent dependence on a program. The goal is becoming more capable over time.</p>
+  </div>
+</section>
+
+<!-- BUNDLE -->
+<section class="bundle" id="bundle">
+  <div class="container">
+    <div class="section-label reveal">THE COMPLETE TOOLKIT</div>
+    <h2 class="reveal">YOU DON'T JUST GET THE GUIDE.<br><span class="accent">YOU GET THE BEGINNER'S TOOLKIT AROUND IT.</span></h2>
+    <div class="bundle-grid">
+      <div class="resource reveal">
+        <div class="r-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="r-num">RESOURCE 01</div>
+        <h3>GYM LINGGO</h3>
+        <p>The Beginner's Guide To Understanding Fitness Terms, Workouts, Equipment, Nutrition, And Gym Talk.</p>
+        <div class="r-outcome">OUTCOME → UNDERSTAND THE LANGUAGE</div>
+      </div>
+      <div class="resource reveal reveal-delay-1">
+        <div class="r-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/></svg></div>
+        <div class="r-num">RESOURCE 02</div>
+        <h3>THE BEGINNER'S GYM SHOE GUIDE</h3>
+        <p>How To Choose The Right Gym Shoes Without Overspending.</p>
+        <div class="r-outcome">OUTCOME → MAKE SMART GEAR CHOICES</div>
+      </div>
+      <div class="resource reveal reveal-delay-2">
+        <div class="r-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="r-num">RESOURCE 03</div>
+        <h3>THE BEGINNER'S GYM SURVIVAL GUIDE</h3>
+        <p>How To Navigate The Gym, Handle Real-World Situations, And Feel Comfortable While You Train.</p>
+        <div class="r-outcome">OUTCOME → NAVIGATE THE GYM</div>
+      </div>
+      <div class="resource reveal">
+        <div class="r-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="r-num">RESOURCE 04</div>
+        <h3>THE BEGINNER'S TRAINER QUESTION GUIDE</h3>
+        <p>The Questions To Ask Before, During, And After Working With A Personal Trainer.</p>
+        <div class="r-outcome">OUTCOME → ASK BETTER QUESTIONS</div>
+      </div>
+      <div class="resource reveal reveal-delay-1">
+        <div class="r-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="r-num">RESOURCE 05</div>
+        <h3>BEGINNER'S FITNESS TRACKER</h3>
+        <p>A Simple Notion System To Record Your Workouts And Track Your Progress.</p>
+        <div class="r-outcome">OUTCOME → TRACK YOUR WORKOUTS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes">
+  <div class="outcomes-inner">
+    <div class="outcome reveal"><div class="o-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="o-label">LEARN<br>THE BASICS</div></div>
+    <div class="outcome reveal reveal-delay-1"><div class="o-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="o-label">UNDERSTAND<br>THE LANGUAGE</div></div>
+    <div class="outcome reveal reveal-delay-2"><div class="o-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/></svg></div><div class="o-label">MAKE SMART<br>GEAR CHOICES</div></div>
+    <div class="outcome reveal"><div class="o-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="o-label">NAVIGATE<br>THE GYM</div></div>
+    <div class="outcome reveal reveal-delay-1"><div class="o-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="o-label">ASK BETTER<br>QUESTIONS</div></div>
+    <div class="outcome reveal reveal-delay-2"><div class="o-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="o-label">TRACK YOUR<br>WORKOUTS</div></div>
+  </div>
+</section>
+
+<!-- DIFF 2 -->
+<section class="diff2">
+  <div class="container">
+    <div class="section-label reveal">BUILT DIFFERENTLY</div>
+    <h2 class="reveal">BUILT FOR THE BEGINNING <span class="accent">MOST FITNESS PRODUCTS IGNORE.</span></h2>
+    <div class="diff2-grid">
+      <div class="diff2-card reveal">
+        <div class="d-label">MOST FITNESS CONTENT</div>
+        <h3>Assumes you already know the basics.</h3>
+        <div class="d-label y" style="margin-top:16px">ZERO TO GYM-READY</div>
+        <p>Starts where beginners actually are.</p>
+      </div>
+      <div class="diff2-card reveal reveal-delay-1">
+        <div class="d-label">MOST FITNESS CONTENT</div>
+        <h3>Focuses heavily on workouts and information.</h3>
+        <div class="d-label y" style="margin-top:16px">ZERO TO GYM-READY</div>
+        <p>Focuses on understanding, decisions, and implementation.</p>
+      </div>
+      <div class="diff2-card reveal reveal-delay-2">
+        <div class="d-label">MOST FITNESS CONTENT</div>
+        <h3>Can leave beginners dependent on instructions.</h3>
+        <div class="d-label y" style="margin-top:16px">ZERO TO GYM-READY</div>
+        <p>Helps you become more independent over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER -->
+<section class="tracker">
+  <div class="container">
+    <div class="section-label dark reveal">IMPLEMENTATION</div>
+    <h2 class="reveal">DON'T JUST LEARN.<br><span class="accent-dark">KEEP A RECORD OF WHAT YOU'RE LEARNING.</span></h2>
+    <p class="section-sub reveal">Your simple Notion system for recording workouts and recognizing progress.</p>
+    <div class="tracker-inner">
+      <div class="tracker-mock reveal">
+        <div class="tm-head">
+          <h4>BEGINNER'S FITNESS TRACKER</h4>
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="tm-tabs">
+          <button class="active" data-tab="workout">WORKOUT LOG</button>
+          <button data-tab="progress">PROGRESS</button>
+        </div>
+        <div id="tabWorkout">
+          <table>
+            <thead><tr><th>DATE</th><th>WORKOUT</th><th>WEIGHT</th><th>REPS</th><th>NOTES</th></tr></thead>
+            <tbody>
+              <tr><td>Sept 24</td><td>Squat</td><td>40kg</td><td>3×8</td><td>Felt steady</td></tr>
+              <tr><td>Sept 24</td><td>Bench</td><td>30kg</td><td>3×10</td><td>Good form</td></tr>
+              <tr><td>Sept 26</td><td>Deadlift</td><td>50kg</td><td>3×6</td><td>New PR</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="tabProgress" style="display:none">
+          <table>
+            <thead><tr><th>DATE</th><th>IMPROVED</th><th>NOTES</th></tr></thead>
+            <tbody>
+              <tr><td>Sept 24</td><td>Form</td><td>Squat depth improved</td></tr>
+              <tr><td>Sept 26</td><td>Weight</td><td>Added 5kg to deadlift</td></tr>
+              <tr><td>Sept 27</td><td>Confidence</td><td>Felt comfortable at gym</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tracker-copy reveal reveal-delay-1">
+        <h3>Simple. Practical. Useful.</h3>
+        <p>You don't need an advanced spreadsheet. You need information you can actually use.</p>
+        <div class="tracker-dbs">
+          <div class="tracker-db">
+            <div class="db-label">WORKOUT LOG</div>
+            <div class="db-fields">Date · Workout · Weight · Reps · Notes</div>
+          </div>
+          <div class="tracker-db">
+            <div class="db-label">PROGRESS TRACKER</div>
+            <div class="db-fields">Date · What Improved? · Notes</div>
+          </div>
+        </div>
+        <button class="cta-dark open-modal">
+          ACCESS THE TRACKER WITH YOUR BUNDLE
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="who">
+  <div class="container">
+    <div class="section-label reveal">FIT CHECK</div>
+    <h2 class="reveal">THIS IS FOR YOU <span class="accent">IF...</span></h2>
+    <div class="who-grid">
+      <div class="who-card reveal"><div class="check">✓</div>You want to start going to the gym but don't know where to begin.</div>
+      <div class="who-card reveal reveal-delay-1"><div class="check">✓</div>You want to understand fitness before spending more money on it.</div>
+      <div class="who-card reveal reveal-delay-2"><div class="check">✓</div>You want practical beginner guidance instead of endless information.</div>
+      <div class="who-card reveal"><div class="check">✓</div>You want to feel more comfortable in the gym.</div>
+      <div class="who-card reveal reveal-delay-1"><div class="check">✓</div>You want to know what to ask a trainer.</div>
+      <div class="who-card reveal reveal-delay-2"><div class="check">✓</div>You want a simple way to track your workouts.</div>
+      <div class="who-card reveal"><div class="check">✓</div>You want to become more independent over time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO NOT -->
+<section class="who-not">
+  <div class="container">
+    <div class="section-label reveal">HONEST CHECK</div>
+    <h2 class="reveal">THIS PROBABLY ISN'T FOR YOU <span class="accent">IF...</span></h2>
+    <div class="who-not-grid">
+      <div class="who-not-card reveal"><div class="x">✕</div>You are already an advanced lifter with years of structured training experience.</div>
+      <div class="who-not-card reveal reveal-delay-1"><div class="x"></div>You are specifically looking for an advanced bodybuilding program.</div>
+      <div class="who-not-card reveal reveal-delay-2"><div class="x">✕</div>You need individualized medical or clinical guidance.</div>
+      <div class="who-not-card reveal"><div class="x">✕</div>You are looking for a personalized training program built specifically around your body, history, and circumstances.</div>
+    </div>
+    <div class="who-not-end reveal">This is a beginner education and orientation product.</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-label dark reveal">QUESTIONS</div>
+    <h2 class="reveal">BUT WHAT IF I<span class="accent-dark">...</span></h2>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">"Do I need a personal trainer?" <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Not necessarily. The guide explains when coaching can be useful, what to ask a trainer, and how to learn from coaching while becoming more independent.</div></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-q">"Can I just learn this from YouTube?" <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">You can learn a lot online. The challenge is knowing what information matters, what applies to you, and how to organize it. ZERO TO GYM-READY gives you a structured starting point.</div></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-q">"Do I need expensive gym gear?" <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. The product is specifically designed to help you understand what you actually need and avoid unnecessary spending.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">"Is this a workout program?" <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. It is a beginner fitness education and orientation system. It teaches you how to understand the gym and make better decisions.</div></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-q">"What if I don't know anything about fitness?" <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">That's exactly who the product is designed for.</div></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-q">"What if I already started going to the gym?" <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">It can still help if you're a beginner or returning after time away and still feel uncertain about terminology, equipment, training, nutrition, or gym situations.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>EDUCATIONAL DISCLAIMER:</strong> ZERO TO GYM-READY is an educational resource and does not replace individualized medical, nutritional, or professional fitness advice. If you have a medical condition, significant or persistent pain, or other health concerns, consult an appropriate qualified healthcare professional.
+  </div>
+</div>
+
+<!-- TESTIMONIALS - 7 Filipino names, mixed gender -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label reveal">REAL EXPERIENCES</div>
+    <h2 class="reveal">WHAT BEGINNERS ARE <span class="accent">SAYING</span></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <p class="t-quote">"I used to feel so intimidated walking into the gym. This guide broke everything down in a way that finally made sense. I actually know what I'm doing now."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Maria Santos">
+          <div>
+            <div class="t-name">Maria Santos</div>
+            <div class="t-context">Working Professional, 28</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-delay-1">
+        <p class="t-quote">"I wasted so much money on supplements and gear I didn't need. This bundle helped me figure out what actually matters before spending."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face" alt="Juan dela Cruz">
+          <div>
+            <div class="t-name">Juan dela Cruz</div>
+            <div class="t-context">Returning Gym-Goer, 32</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <p class="t-quote">"The Gym Linggo guide alone was worth it. I finally understand what trainers and gym regulars are talking about. No more nodding along pretending I get it."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face" alt="Ana Reyes">
+          <div>
+            <div class="t-name">Ana Reyes</div>
+            <div class="t-context">Beginner, 25</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="t-quote">"As a guy who was embarrassed to ask questions at the gym, the Trainer Question Guide gave me the confidence to actually talk to a coach. Big difference."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Miguel Torres">
+          <div>
+            <div class="t-name">Miguel Torres</div>
+            <div class="t-context">Beginner, 30</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-delay-1">
+        <p class="t-quote">"I've been to the gym for 3 months now and I'm actually seeing progress because I'm tracking properly. The Notion tracker is so simple to use."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Patricia Lim">
+          <div>
+            <div class="t-name">Patricia Lim</div>
+            <div class="t-context">Working Professional, 27</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <p class="t-quote">"I thought I needed a trainer right away. This guide showed me what I can learn on my own first, and when it actually makes sense to hire one. Saved me money."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Carlos Mendoza">
+          <div>
+            <div class="t-name">Carlos Mendoza</div>
+            <div class="t-context">Returning Gym-Goer, 35</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal">
+        <p class="t-quote">"The shoe guide helped me pick the right pair without overspending. Everything in this bundle is practical — no fluff, no fake motivation. Just clear steps."</p>
+        <div class="t-author">
+          <img class="t-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face" alt="Sofia Garcia">
+          <div>
+            <div class="t-name">Sofia Garcia</div>
+            <div class="t-context">Beginner, 24</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section class="value">
+  <div class="container">
+    <div class="section-label reveal">THE COMPLETE SYSTEM</div>
+    <h2 class="reveal">EVERYTHING YOU NEED TO START <span class="accent">WITH MORE CLARITY.</span></h2>
+    <div class="value-list">
+      <div class="value-item main reveal">
+        <div class="v-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="v-text"><h4>ZERO TO GYM-READY</h4><p>The Ultimate Beginner Starter Guide</p></div>
+        <div class="v-tag">MAIN GUIDE</div>
+      </div>
+      <div class="value-item reveal reveal-delay-1">
+        <div class="v-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="v-text"><h4>GYM LINGGO</h4><p>Understand fitness terms and gym talk</p></div>
+        <div class="v-tag">INCLUDED</div>
+      </div>
+      <div class="value-item reveal reveal-delay-2">
+        <div class="v-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2l1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/></svg></div>
+        <div class="v-text"><h4>THE BEGINNER'S GYM SHOE GUIDE</h4><p>Choose the right shoes without overspending</p></div>
+        <div class="v-tag">INCLUDED</div>
+      </div>
+      <div class="value-item reveal">
+        <div class="v-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="v-text"><h4>THE BEGINNER'S GYM SURVIVAL GUIDE</h4><p>Navigate the gym with comfort</p></div>
+        <div class="v-tag">INCLUDED</div>
+      </div>
+      <div class="value-item reveal reveal-delay-1">
+        <div class="v-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="v-text"><h4>THE BEGINNER'S TRAINER QUESTION GUIDE</h4><p>Ask better questions before, during, and after coaching</p></div>
+        <div class="v-tag">INCLUDED</div>
+      </div>
+      <div class="value-item reveal reveal-delay-2">
+        <div class="v-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div class="v-text"><h4>BEGINNER'S FITNESS TRACKER</h4><p>Notion system to record workouts and track progress</p></div>
+        <div class="v-tag">DIGITAL BONUS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price" id="price">
+  <div class="container">
+    <div class="section-label reveal" style="text-align:center;display:block">THE DECISION</div>
+    <h2 class="reveal" style="text-align:center">START WITH THE COMPLETE <span class="accent">BEGINNER SYSTEM.</span></h2>
+    <div class="price-card reveal">
+      <div class="price-anchor">₱997</div>
+      <div class="price-amount" id="priceAmount">499</div>
+      <div class="price-label">INTRODUCTORY PRICE</div>
+      <p class="price-copy">Get the complete ZERO TO GYM-READY beginner system for a one-time introductory price of ₱499.</p>
+      <button class="cta-primary open-modal" style="width:100%;justify-content:center">
+        GET ZERO TO GYM-READY FOR ₱499
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="price-micro">One-time payment • Digital access</div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK -->
+<section class="risk">
+  <div class="container">
+    <div class="risk-inner">
+      <div class="section-label reveal" style="text-align:center;display:block">A SIMPLE DECISION</div>
+      <h2 class="reveal" style="text-align:center;margin-bottom:24px">CLEAR EXPECTATIONS. <span class="accent">NO GUESSWORK.</span></h2>
+      <p class="reveal">You're not buying another complicated fitness program. You're getting a structured starting point designed to help you understand the basics, make smarter decisions, and approach the gym with more confidence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="final-inner">
+    <h2 class="reveal">YOU DON'T NEED TO KNOW EVERYTHING BEFORE YOU START.</h2>
+    <div class="hl-line reveal">YOU JUST NEED TO KNOW WHAT MATTERS FIRST.</div>
+    <p class="reveal">Stop trying to piece together your fitness journey from random videos, conflicting advice, and unnecessary purchases.</p>
+    <p class="reveal"><strong style="color:var(--yellow)">Start with a clear foundation.</strong></p>
+    <div class="final-list reveal">
+      <span>Learn the basics</span>
+      <span>Understand the language</span>
+      <span>Make smarter choices</span>
+      <span>Navigate the gym</span>
+      <span>Ask better questions</span>
+      <span>Track your progress</span>
+    </div>
+    <p class="reveal">Then keep building from there.</p>
+    <button class="cta-primary open-modal reveal" style="margin-top:20px">
+      GET ZERO TO GYM-READY — 499
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <div class="final-sub reveal">The Ultimate Beginner Starter Guide + Complete Beginner Resource Bundle</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">READY TO FEEL LESS LOST <span class="accent-dark">AND MORE GYM-READY?</span></h2>
+    <p class="section-sub reveal">Start with the foundation.</p>
+    <button class="cta-primary open-modal reveal" style="background:var(--olive);color:var(--white);box-shadow:0 10px 30px rgba(102,112,82,.3)">
+      GET THE COMPLETE BUNDLE — ₱499
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <div class="cta-micro reveal" style="color:var(--brown)">Instant Digital Access</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="f-logo"><span class="dot"></span>ZERO <span>TO</span> GYM-READY</div>
+      <p>The Ultimate Beginner Starter Guide. An educational resource designed to help beginners enter the fitness world with more clarity, confidence, and independence.</p>
+    </div>
+    <div class="footer-col">
+      <h5>NAVIGATE</h5>
+      <a href="#inside">What's Inside</a>
+      <a href="#framework">How It Works</a>
+      <a href="#bundle">Resources</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h5>LEGAL</h5>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 ZERO TO GYM-READY. All rights reserved.</div>
+    <div>Educational resource. Not medical advice.</div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta">
+  <button class="open-modal">GET THE COMPLETE BUNDLE — ₱499</button>
+</div>
+
+<!-- ===== PAYMENT MODAL ===== -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+    
+    <div class="modal-header">
+      <div class="m-eyebrow">COMPLETE BEGINNER BUNDLE</div>
+      <h3>ZERO TO GYM-READY</h3>
+      <div class="m-sub">The Ultimate Beginner Starter Guide</div>
+      <div class="m-bundle">6-RESOURCE BUNDLE</div>
+    </div>
+
+    <div class="modal-price">
+      <div class="mp-amount">₱499</div>
+      <div class="mp-label">ONE-TIME PAYMENT</div>
+    </div>
+
+    <div class="modal-gcash">
+      <div class="mg-label">PAY VIA GCASH</div>
+      <div class="mg-brand">GCash</div>
+      <div class="mg-row">
+        <span class="mg-k">ACCOUNT NAME</span>
+        <span class="mg-v">Jeff Maclang</span>
+      </div>
+      <div class="mg-row">
+        <span class="mg-k">GCASH NUMBER</span>
+        <span class="mg-number">
+          09999999999
+          <button class="mg-copy" id="copyGcash">COPY</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="modal-instruction">
+      Send <strong>₱499</strong> to the GCash account above. After completing the payment, <strong>save a screenshot of your proof of payment</strong>.
+    </div>
+
+    <div class="modal-proof">
+      <div class="mp-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      </div>
+      <div>
+        <div class="mp-title">IMPORTANT</div>
+        <div class="mp-text">Please <em>save a screenshot of your proof of payment</em> after completing your GCash transaction. You will need this proof to confirm your payment and receive your ZERO TO GYM-READY bundle.</div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="modal-cta" id="confirmPayment">
+        I'VE COMPLETED MY PAYMENT
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="modal-footer-note">Have your proof of payment ready after clicking this button.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== SCROLL PROGRESS =====
+  const scrollProgress = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = progress + '%';
+  });
+
+  // ===== NAV SCROLL =====
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // ===== HAMBURGER =====
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  const menuIcon = document.getElementById('menuIcon');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const isOpen = navLinks.classList.contains('open');
+    menuIcon.innerHTML = isOpen 
+      ? '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'
+      : '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuIcon.innerHTML = '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>';
+    });
+  });
+
+  // ===== FAQ ACCORDION =====
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ===== TRACKER TABS =====
+  document.querySelectorAll('.tm-tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tm-tabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.dataset.tab;
+      document.getElementById('tabWorkout').style.display = tab === 'workout' ? 'block' : 'none';
+      document.getElementById('tabProgress').style.display = tab === 'progress' ? 'block' : 'none';
+    });
+  });
+
+  // ===== FRAMEWORK INTERACTIVE =====
+  document.querySelectorAll('.fw-step').forEach(step => {
+    step.addEventListener('click', () => {
+      document.querySelectorAll('.fw-step').forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    });
+  });
+
+  // ===== REVEAL ON SCROLL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== PARALLAX MOCKUP =====
+  const mockupStage = document.getElementById('mockupStage');
+  if(mockupStage && window.innerWidth > 768){
+    window.addEventListener('mousemove', (e) => {
+      const rect = mockupStage.getBoundingClientRect();
+      if(rect.top > window.innerHeight || rect.bottom < 0) return;
+      const x = (e.clientX - window.innerWidth / 2) / window.innerWidth;
+      const y = (e.clientY - window.innerHeight / 2) / window.innerHeight;
+      mockupStage.querySelectorAll('[data-parallax]').forEach(el => {
+        const factor = parseFloat(el.dataset.parallax);
+        const tx = x * factor * 100;
+        const ty = y * factor * 100;
+        el.style.transform = el.classList.contains('book-main') 
+          ? `translateX(calc(-50% + ${tx}px)) rotateY(${-8 + tx * 0.3}deg) translateY(${ty}px)`
+          : `translate(${tx}px, ${ty}px)`;
+      });
+    });
+  }
+
+  // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  // ===== PRICE COUNTER ANIMATION =====
+  const priceEl = document.getElementById('priceAmount');
+  const priceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        let current = 0;
+        const target = 499;
+        const duration = 1200;
+        const step = target / (duration / 16);
+        const counter = setInterval(() => {
+          current += step;
+          if(current >= target){
+            current = target;
+            clearInterval(counter);
+          }
+          priceEl.textContent = '₱' + Math.floor(current);
+        }, 16);
+        priceObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  if(priceEl) priceObserver.observe(priceEl);
+
+  // ===== PAYMENT MODAL =====
+  const modal = document.getElementById('paymentModal');
+  const modalClose = document.getElementById('modalClose');
+  const confirmBtn = document.getElementById('confirmPayment');
+  const copyBtn = document.getElementById('copyGcash');
+
+  function openModal(){
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+
+  // Copy GCash number
+  copyBtn.addEventListener('click', () => {
+    const number = '09999999999';
+    navigator.clipboard.writeText(number).then(() => {
+      copyBtn.textContent = 'COPIED';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'COPY';
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = number;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      copyBtn.textContent = 'COPIED';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'COPY';
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+
+  // Confirm payment (placeholder)
+  confirmBtn.addEventListener('click', () => {
+    alert('Payment confirmation workflow will be connected here. Please have your proof of payment ready.');
+  });
+</script>
+</body>
+</html>
